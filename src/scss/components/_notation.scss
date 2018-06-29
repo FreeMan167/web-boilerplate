@@ -1,0 +1,18 @@
+.notation {
+  color : $color-primary;
+  padding : 5rem;
+  border : 10px solid;
+  position: relative;
+  overflow: hidden;
+  font-family: $font-primary;
+  &:before {
+    content : "",
+  }
+  &:after {
+    content : "";
+    position: absolute;
+    width: 20px;
+    z-index: 1;
+    height: 100%;
+  }
+}
