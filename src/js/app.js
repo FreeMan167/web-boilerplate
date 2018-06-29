@@ -1,3 +1,1 @@
-var firework = (function() {
-
-})()
+console.log("hehe");

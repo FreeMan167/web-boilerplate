@@ -13,8 +13,15 @@ gulp.task('watch', function() {
     server: "./src"
   });
   gulp.watch("src/scss/**/*.scss", ['sass']);
-  gulp.watch("src/js/**/*.js").on('change', browserSync.reload);
+  gulp.watch("src/js/**/*.js", ["babel"]);
   gulp.watch("src/*.html").on('change', browserSync.reload);
+})
+
+gulp.task('babel', function() {
+  return gulp.src("src/js/*.js")
+    .pipe(babel())
+    .pipe(gulp.dest("src/js"))
+    .pipe(browserSync.stream())
 })
 
 gulp.task('sass', function() {
@@ -42,7 +49,7 @@ gulp.task('build', function() {
     .pipe(gulp.dest('dist/assets/images'));
 
   // Minify Js
-  gulp.src("src/js/**/*.js")
+  gulp.src("src/js/*.js")
     .pipe(babel())
     .pipe(uglify())
     .pipe(gulp.dest('dist/assets/js'));
